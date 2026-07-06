@@ -4,7 +4,7 @@ A raw WebGL game where you rotate a 3D sphere covered in bacteria and click them
 
 ## Play it
 
-`https://harkirat-c.github.io/SuperBugZapper/`
+[https://harkirat-c.github.io/SuperBugZapper/]
 
 ## Files
 
