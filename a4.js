@@ -281,10 +281,13 @@ function main(){
   for(let i = 0; i < maxB; i++) bacteria.push(spawnBac(i));
  
   // drag to rotate
+  let downX = 0, downY = 0;
   canvas.addEventListener('mousedown', function(e){
     isDragging = true;
     lastX = e.clientX;
     lastY = e.clientY;
+    downX = e.clientX;
+    downY = e.clientY;
   });
  
   canvas.addEventListener('mousemove', function(e){
@@ -301,13 +304,14 @@ function main(){
     rotX += dy * 0.4;
   });
  
-  canvas.addEventListener('mouseup',    function(){ isDragging = false; });
-  canvas.addEventListener('mouseleave', function(){ isDragging = false; });
- 
-  // press space to kill bacteria under cursor
-  document.addEventListener('keydown', function(e){
-    if(e.code === 'Space') tryKill();
+  canvas.addEventListener('mouseup', function(e){
+    isDragging = false;
+    // only count as a click (not a drag) if the mouse barely moved
+    let dx = e.clientX - downX;
+    let dy = e.clientY - downY;
+    if(Math.sqrt(dx*dx + dy*dy) < 4) tryKill();
   });
+  canvas.addEventListener('mouseleave', function(){ isDragging = false; });
  
   requestAnimationFrame(gameLoop);
 }
