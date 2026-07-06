@@ -12,4 +12,4 @@ A raw WebGL game where you rotate a 3D sphere covered in bacteria and click them
 - `a4.js` — game logic, WebGL rendering, and input handling
 - `lib/` — small WebGL helper libraries (matrix math, shader utils, etc.)
 
-Made by Harkirat Chahal.
+Made by Harkirat Chahal. Showcasing computer graphical matrix abilities with WebGL.
