@@ -133,6 +133,25 @@ function updateUI(){
 function setResult(t){
   document.getElementById('result').innerHTML = t;
 }
+
+function endGame(t){
+  gameOver = true;
+  setResult(t);
+  document.getElementById('playAgainBtn').style.display = 'inline-block';
+}
+
+function resetGame(){
+  bacteria = [];
+  for(let i = 0; i < maxB; i++) bacteria.push(spawnBac(i));
+  gameOver = false;
+  playerPts = 0;
+  gamePts = 0;
+  threshCount = 0;
+  lastTime = performance.now();
+  setResult('');
+  updateUI();
+  document.getElementById('playAgainBtn').style.display = 'none';
+}
  
 function gameLoop(now){
   let dt = (now - lastTime) / 1000;
@@ -154,15 +173,13 @@ function gameLoop(now){
  
     // game wins if 2 bacteria reach threshold
     if(threshCount >= 2){
-      gameOver = true;
-      setResult('You lose :(');
+      endGame('You lose :(');
     }
  
     // player wins if all bacteria are dead
     let alive = bacteria.filter(b => !b.dead).length;
     if(!gameOver && alive === 0){
-      gameOver = true;
-      setResult('You win! All bacteria eliminated!');
+      endGame('You win! All bacteria eliminated!');
     }
  
     // game gains small points over time (delay penalty)
@@ -292,8 +309,9 @@ function main(){
  
   canvas.addEventListener('mousemove', function(e){
     let r = canvas.getBoundingClientRect();
-    mouseX = e.clientX - r.left;
-    mouseY = e.clientY - r.top;
+    // map from CSS pixel space (affected by page zoom) to the canvas's actual pixel buffer
+    mouseX = (e.clientX - r.left) * (canvas.width / r.width);
+    mouseY = (e.clientY - r.top) * (canvas.height / r.height);
  
     if(!isDragging) return;
     let dx = e.clientX - lastX;
@@ -312,7 +330,9 @@ function main(){
     if(Math.sqrt(dx*dx + dy*dy) < 4) tryKill();
   });
   canvas.addEventListener('mouseleave', function(){ isDragging = false; });
- 
+
+  document.getElementById('playAgainBtn').addEventListener('click', resetGame);
+
   requestAnimationFrame(gameLoop);
 }
  
