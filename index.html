@@ -3,21 +3,73 @@
     <head>
         <title>Super Bug Zapper!</title>
         <style>
-            body {
-            background-color: grey;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            color: yellow;
+            :root {
+                color-scheme: dark;
             }
-            h2 { margin-bottom: 8px; }
-            p  { margin-top: 0; font-size: 14px; color: rgb(255, 255, 255); }
-            #result { font-size: 20px; font-weight: bold; color: yellow; }
+            * { box-sizing: border-box; }
+            body {
+                background: radial-gradient(circle at 50% 20%, #2b3a2b 0%, #10151a 60%, #0a0d10 100%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                min-height: 100vh;
+                margin: 0;
+                padding: 32px 16px 48px;
+                color: #eaf2e9;
+                font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            }
+            .credit {
+                margin: 0 0 4px;
+                font-size: 13px;
+                font-style: italic;
+                color: #9aa79a;
+                letter-spacing: 0.5px;
+            }
+            h2 {
+                margin: 0 0 18px;
+                font-size: 26px;
+                letter-spacing: 2px;
+                color: #a4f26a;
+                text-shadow: 0 0 12px rgba(164, 242, 106, 0.45);
+            }
+            .hud {
+                display: flex;
+                gap: 24px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(164, 242, 106, 0.25);
+                border-radius: 10px;
+                padding: 10px 22px;
+                margin-bottom: 6px;
+            }
+            .hud p {
+                margin: 0;
+                font-size: 14px;
+                color: #d7e6d5;
+            }
+            .hud p b { color: #a4f26a; }
+            #result {
+                min-height: 28px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #ffd23f;
+                margin: 10px 0 4px;
+                text-align: center;
+            }
+            .hint {
+                margin: 0 0 16px;
+                font-size: 13px;
+                color: #9aa79a;
+            }
+            .hint b {
+                color: #ffd23f;
+            }
             canvas {
-            cursor: crosshair;
+                cursor: crosshair;
+                border-radius: 12px;
+                border: 1px solid rgba(164, 242, 106, 0.35);
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 60px rgba(164, 242, 106, 0.08);
+                background: #05070a;
             }
             canvas:active { cursor: crosshair; }
         </style>
@@ -28,12 +80,14 @@
         <!-- <script src="lib/initShaders.js"></script> -->
     </head>
     <body>
-        <p><italic>Harkirat Chahal</italic></p>
-        <h2>||||||| Super Bug Zapper |||||||</h2>
-        <p id="player_points">Player points: 0</p>
-        <p id="game_points">Game points: 0</p>
+        <p class="credit">Harkirat Chahal</p>
+        <h2>Super Bug Zapper</h2>
+        <div class="hud">
+            <p id="player_points">Player points: <b>0</b></p>
+            <p id="game_points">Game points: <b>0</b></p>
+        </div>
         <p id="result"></p>
-        <p>Hover over a bacterium and press <b>SPACE</b> to kill it!</p>
+        <p class="hint">Hover over a bacterium and <b>click</b> to kill it!</p>
         <canvas id="webgl" width="600" height="600"></canvas>
         <script src="a4.js"></script>
     </body>

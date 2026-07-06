@@ -126,8 +126,8 @@ function tryKill(){
 }
  
 function updateUI(){
-  document.getElementById('player_points').innerHTML = 'Player points: ' + playerPts;
-  document.getElementById('game_points').innerHTML   = 'Game points: '   + gamePts.toFixed(1);
+  document.getElementById('player_points').innerHTML = 'Player points: <b>' + playerPts + '</b>';
+  document.getElementById('game_points').innerHTML   = 'Game points: <b>'   + gamePts.toFixed(1) + '</b>';
 }
  
 function setResult(t){
