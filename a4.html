@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Super Bug Zapper!</title>
+        <style>
+            body {
+            background-color: grey;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: yellow;
+            }
+            h2 { margin-bottom: 8px; }
+            p  { margin-top: 0; font-size: 14px; color: rgb(255, 255, 255); }
+            #result { font-size: 20px; font-weight: bold; color: yellow; }
+            canvas {
+            cursor: crosshair;
+            }
+            canvas:active { cursor: crosshair; }
+        </style>
+        <script src="lib/webgl-utils.js"></script>
+        <script src="lib/webgl-debug.js"></script>
+        <script src="lib/cuon-utils.js"></script>
+        <script src="lib/cuon-matrix.js"></script>
+        <!-- <script src="lib/initShaders.js"></script> -->
+    </head>
+    <body>
+        <p><italic>Harkirat Chahal</italic></p>
+        <h2>||||||| Super Bug Zapper |||||||</h2>
+        <p id="player_points">Player points: 0</p>
+        <p id="game_points">Game points: 0</p>
+        <p id="result"></p>
+        <p>Hover over a bacterium and press <b>SPACE</b> to kill it!</p>
+        <canvas id="webgl" width="600" height="600"></canvas>
+        <script src="a4.js"></script>
+    </body>
+</html>
